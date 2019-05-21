@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 
+import com.neemre.btcdcli4j.core.domain.NetworkInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,7 @@ public class DaemonConfigurator extends AgentConfigurator {
 		return btcdProvider;
 	}
 
-	public boolean checkNodeLiveness(Info info) {
+	public boolean checkNodeLiveness(NetworkInfo info) {
 		if (info == null) {
 			LOG.error("-- checkNodeLiveness(..): node did not respond to JSON-RPC API probe request; "
 					+ "please check your 'bitcoind' configuration");

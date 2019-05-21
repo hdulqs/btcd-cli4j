@@ -2,11 +2,11 @@
 
 The btcd-cli4j library is a simple Java wrapper around Bitcoin Core's JSON-RPC (via HTTP) interface. 
 
-* **Latest release:** 0.5.1 ([.zip](https://github.com/priiduneemre/btcd-cli4j/archive/0.5.1.zip); [.tar.gz](https://github.com/priiduneemre/btcd-cli4j/archive/0.5.1.tar.gz))
-* **Compatibility:** Bitcoin Core v0.10.0/0.10.1/0.10.2/0.10.3 (see [here](https://github.com/priiduneemre/btcd-cli4j/releases) for older versions)
+* **Latest release:** 0.6.0 ([.zip](https://github.com/priiduneemre/btcd-cli4j/archive/0.5.1.zip); [.tar.gz](https://github.com/priiduneemre/btcd-cli4j/archive/0.5.1.tar.gz))
+* **Compatibility:** Bitcoin Core v0.16 above
 * **API coverage:** 78 of 80 commands (fully) implemented
 * **License:** Apache License 2.0 (see [LICENSE.md](https://github.com/priiduneemre/btcd-cli4j/blob/master/LICENSE.md))
-* **Readme updated:** 2016-02-17 10:16:43 (UTC)
+* **Readme updated:** 2019-05-21 10:16:43 (UTC)
 
 A list of all *bitcoind* JSON-RPC API commands currently supported by btcd-cli4j can be found in the `Commands` enum (see [here](https://github.com/priiduneemre/btcd-cli4j/blob/master/core/src/main/java/com/neemre/btcdcli4j/core/Commands.java) for more details).
 
@@ -56,7 +56,7 @@ In order to communicate with *bitcoind*, btcd-cli4j needs to be aware of your no
 
 	node.bitcoind.rpc.protocol = http
 	node.bitcoind.rpc.host = 127.0.0.1
-	node.bitcoind.rpc.port = 8332
+	node.bitcoind.rpc.port = 18443
 	node.bitcoind.rpc.user = falcon-pc
 	node.bitcoind.rpc.password = 3F4DN9QGqWrB4DCdfYMXp8xdDYL4HDFzpaS9r76DbNhw
 	node.bitcoind.http.auth_scheme = Basic
@@ -92,7 +92,7 @@ Next, modify your `pom.xml` to include `btcd-cli4j-daemon` as a dependency:
 	<dependency>
 		<groupId>com.neemre.btcd-cli4j</groupId>
 		<artifactId>btcd-cli4j-daemon</artifactId>
-		<version>0.5.1</version>
+		<version>0.6.0</version>
 	</dependency>
 
 To let the daemon know where to listen for notifications, open up your `node_config.properties` file and specify the ports listed in the shell scripts above, for example:

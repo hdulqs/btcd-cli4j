@@ -17,7 +17,6 @@ public class ControlApi {
 		Properties nodeConfig = ResourceUtils.getNodeConfig();
 		BtcdClient client = new VerboseBtcdClientImpl(httpProvider, nodeConfig);
 
-		client.getInfo();
 		client.help();
 		client.help(Commands.WALLET_LOCK.getName());
 		client.stop();

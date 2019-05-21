@@ -1,42 +1,17 @@
 package com.neemre.btcdcli4j.examples.client;
 
+import com.neemre.btcdcli4j.core.BitcoindException;
+import com.neemre.btcdcli4j.core.Commands;
+import com.neemre.btcdcli4j.core.CommunicationException;
+import com.neemre.btcdcli4j.core.client.BtcdClientImpl;
+import com.neemre.btcdcli4j.core.domain.*;
+import org.apache.http.impl.client.CloseableHttpClient;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import org.apache.http.impl.client.CloseableHttpClient;
-
-import com.neemre.btcdcli4j.core.BitcoindException;
-import com.neemre.btcdcli4j.core.Commands;
-import com.neemre.btcdcli4j.core.CommunicationException;
-import com.neemre.btcdcli4j.core.client.BtcdClientImpl;
-import com.neemre.btcdcli4j.core.domain.Account;
-import com.neemre.btcdcli4j.core.domain.AddedNode;
-import com.neemre.btcdcli4j.core.domain.Address;
-import com.neemre.btcdcli4j.core.domain.AddressInfo;
-import com.neemre.btcdcli4j.core.domain.AddressOverview;
-import com.neemre.btcdcli4j.core.domain.Block;
-import com.neemre.btcdcli4j.core.domain.BlockChainInfo;
-import com.neemre.btcdcli4j.core.domain.Info;
-import com.neemre.btcdcli4j.core.domain.MemPoolInfo;
-import com.neemre.btcdcli4j.core.domain.MiningInfo;
-import com.neemre.btcdcli4j.core.domain.MultiSigAddress;
-import com.neemre.btcdcli4j.core.domain.NetworkInfo;
-import com.neemre.btcdcli4j.core.domain.NetworkTotals;
-import com.neemre.btcdcli4j.core.domain.Output;
-import com.neemre.btcdcli4j.core.domain.OutputOverview;
-import com.neemre.btcdcli4j.core.domain.Payment;
-import com.neemre.btcdcli4j.core.domain.PeerNode;
-import com.neemre.btcdcli4j.core.domain.RawTransactionOverview;
-import com.neemre.btcdcli4j.core.domain.RedeemScript;
-import com.neemre.btcdcli4j.core.domain.SignatureResult;
-import com.neemre.btcdcli4j.core.domain.SinceBlock;
-import com.neemre.btcdcli4j.core.domain.Tip;
-import com.neemre.btcdcli4j.core.domain.Transaction;
-import com.neemre.btcdcli4j.core.domain.TxOutSetInfo;
-import com.neemre.btcdcli4j.core.domain.WalletInfo;
 
 import static com.neemre.btcdcli4j.examples.util.OutputUtils.printResult;
 
@@ -150,15 +125,6 @@ public class VerboseBtcdClientImpl extends BtcdClientImpl {
 		printResult(Commands.ESTIMATE_FEE.getName(), new String[]{"maxBlocks"}, 
 				new Object[]{maxBlocks}, estimatedFee);
 		return estimatedFee;
-	}
-
-	@Override
-	public BigDecimal estimatePriority(Integer maxBlocks) throws BitcoindException, 
-			CommunicationException {
-		BigDecimal estimatedPriority = super.estimatePriority(maxBlocks);
-		printResult(Commands.ESTIMATE_PRIORITY.getName(), new String[]{"maxBlocks"}, 
-				new Object[]{maxBlocks}, estimatedPriority);
-		return estimatedPriority;
 	}
 
 	@Override
@@ -304,26 +270,6 @@ public class VerboseBtcdClientImpl extends BtcdClientImpl {
 		return difficulty;
 	}
 
-	@Override
-	public Boolean getGenerate() throws BitcoindException, CommunicationException {
-		Boolean isGenerate = super.getGenerate();
-		printResult(Commands.GET_GENERATE.getName(), null, null, isGenerate);
-		return isGenerate;
-	}
-
-	@Override
-	public Long getHashesPerSec() throws BitcoindException, CommunicationException {
-		Long hashesPerSec = super.getHashesPerSec();
-		printResult(Commands.GET_HASHES_PER_SEC.getName(), null, null, hashesPerSec);
-		return hashesPerSec;
-	}
-
-	@Override
-	public Info getInfo() throws BitcoindException, CommunicationException {
-		Info info = super.getInfo();
-		printResult(Commands.GET_INFO.getName(), null, null, info);
-		return info;
-	}
 
 	@Override
 	public MemPoolInfo getMemPoolInfo() throws BitcoindException, CommunicationException {
@@ -997,18 +943,10 @@ public class VerboseBtcdClientImpl extends BtcdClientImpl {
 	}
 
 	@Override
-	public void setGenerate(Boolean isGenerate) throws BitcoindException, CommunicationException {
-		super.setGenerate(isGenerate);
-		printResult(Commands.SET_GENERATE.getName(), new String[]{"isGenerate"}, 
-				new Object[]{isGenerate}, null);
-	}
-
-	@Override
-	public void setGenerate(Boolean isGenerate, Integer processors) throws BitcoindException, 
-			CommunicationException {
-		super.setGenerate(isGenerate, processors);
-		printResult(Commands.SET_GENERATE.getName(), new String[]{"isGenerate", "processors"},
-				new Object[]{isGenerate, processors}, null);
+	public void generate(Integer processors) throws BitcoindException, CommunicationException {
+		super.generate(processors);
+		printResult(Commands.GENERATE.getName(), new String[]{"processors"},
+				new Object[]{processors}, null);
 	}
 
 	@Override

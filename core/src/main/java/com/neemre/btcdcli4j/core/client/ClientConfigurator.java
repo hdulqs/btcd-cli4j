@@ -89,4 +89,5 @@ public class ClientConfigurator extends AgentConfigurator {
 		}
 		return StringUtils.join(separatedFormat);    
 	}
+
 }
